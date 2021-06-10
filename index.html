@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<title></title>
+	<script type="text/javascript">
+		$(function(){
+			$("#button").click(function(){
+				$("#div").animate({ //izvrsava sve odjednom
+					left:'200px',
+					//width: 'toggle',
+					//height: 'toggle'
+
+					width: '+=50px',
+					height: '+=50px'
+				});
+				$("#div").hide('slow');
+				$("#div").show('slow');
+				
+			});
+		});
+		$(function(){
+			$("#b").click(function(){
+			var div=$("#d"); 
+			div.animate({height:'300px', opacity: '0.4'}, "slow"); //izvrsi animaciju po animaciju
+			div.animate({width:'300px', opacity: '0.8'}, "slow");
+			div.animate({height:'100px', opacity: '0.4'}, "slow");
+			div.animate({width:'100px', opacity: '0.8'}, "slow");
+		});
+		});
+
+		var leftTrenutno=10;
+		var preslo150=0;
+		$(function(){
+			$("#button1").click(function(){
+			var div=$("#div1"); 
+
+			if(leftTrenutno<150 && preslo150==0){
+				leftTrenutno+=30;
+				div.animate({left:'+=30px'}, "slow"); //izvrsi animaciju po animaciju
+				div.animate({fontSize:'30px'}, "slow");
+			}else if(leftTrenutno>=150)
+				preslo150=1;
+
+			if(preslo150==1 && leftTrenutno>=10){
+				leftTrenutno-=30;
+				div.animate({left:'-=30px'}, "slow"); //izvrsi animaciju po animaciju
+				div.animate({fontSize:'12px'}, "slow");
+				if(leftTrenutno<10)
+					preslo150=0;
+			}
+
+			
+			});
+		});
+		$(function(){
+			$('#button2').click(function(){
+			$("#p").css('color','red').slideUp(1500).slideDown(2500);
+			});
+		});
+	</script>
+</head>
+<body>
+	<button id="button">zapocni animaciju</button>
+	<div id="div" style="width: 100px;height: 100px;position: absolute;background-color: red;"></div>
+
+	<br><br><br><br><br><br><br><br>
+	<button id="b">zapocni animaciju</button><br>
+	<div id="d" style="background-color: green;width: 100px;height: 100px;position: absolute;"></div>
+
+	<br><br><br><br><br><br><br><br>
+	<button id="button1">zapocni animaciju</button>
+	<div id="div1" style="background-color: yellow;width: 200px;height: 100px;position: absolute;">text</div>
+
+	<br><br><br><br><br><br><br><br>
+	<p id="p">text</p>
+	<button id="button2">prikazi sakri</button>
+</body>
+</html>
